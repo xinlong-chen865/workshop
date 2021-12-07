@@ -1,0 +1,6 @@
+const Store = {
+
+}
+export {
+    Store
+};

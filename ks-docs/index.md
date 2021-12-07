@@ -1,0 +1,3 @@
+NaN@ks-docs
+handleClick是处理按钮点击事件的函数
+falsefalsefalsefalse
