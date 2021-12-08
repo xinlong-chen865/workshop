@@ -570,15 +570,41 @@ class Solution {
 
 
 
-### 78子集(对比左右括号的问题)
+### 78 子集(对比左右括号的问题)
+
+**回溯就是在不断地试错的过程** 
 
  一般如果参数随着递归的成熟增加的话就必须要reverse the current state （清理当前层），保证每一轮的参数都是不变的，不会影响其它层
 
 ```java
+class Solution {
+    public List<List<Integer>> subsets(int[] nums) {
+        List<List<Integer>> res = new ArrayList();
+        if(nums==null) return res;
+        dfs(res,new ArrayList(),nums,0);
+        return res;
+    }
 
+    public void dfs(List<List<Integer>> res,List<Integer> ans,int[] nums,int index){
+        //终结条件
+        if(index==nums.length){
+            //很坑，这个实际上就是在用ans构建一个list
+            res.add(new ArrayList(ans));
+            return;
+        }
+        //处理当前层逻辑并下探
+        //当前不加入进去
+        dfs(res,ans,nums,index+1);
+        //当前加入进去
+        ans.add(nums[index]);
+        dfs(res,ans,nums,index+1);
+        //释放资源
+        ans.remove(ans.size()-1);
+    }
+}
 ```
 
-
+思路：这个是传统的递归的方式，但是注意要回收资源，list的第三个构造方法是传入一个集合，实际上就是弄出一个集合，里面包含传入集合的元素
 
 
 
